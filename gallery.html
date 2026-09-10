@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Saffron Table</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+  <style>
+    .gallery-filter { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:48px; }
+    .gallery-filter .filter-btn { padding:10px 24px; border-radius:var(--radius-full); border:1px solid #e5dfd4; background:#fff; color:var(--text-secondary); font-weight:600; font-size:0.9rem; cursor:pointer; transition:var(--transition); }
+    .gallery-filter .filter-btn:hover,.gallery-filter .filter-btn.active { background:var(--gold-gradient); color:#fff; border-color:transparent; box-shadow:var(--shadow-gold); }
+    .gallery-masonry { columns:3; gap:20px; }
+    .gallery-masonry .gallery-item { break-inside:avoid; margin-bottom:20px; border-radius:var(--radius-lg); overflow:hidden; position:relative; cursor:pointer; }
+    .gallery-masonry .gallery-item img { width:100%; display:block; transition:transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+    .gallery-masonry .gallery-item:hover img { transform:scale(1.06); }
+    .gallery-masonry .gallery-item .gallery-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(12,15,20,0.75) 0%, transparent 55%); opacity:0; transition:var(--transition); display:flex; flex-direction:column; justify-content:flex-end; padding:24px; }
+    .gallery-masonry .gallery-item:hover .gallery-overlay { opacity:1; }
+    .gallery-overlay span { color:#fff; font-family:var(--font-serif); font-size:1.1rem; font-weight:600; }
+    .gallery-overlay i { color:var(--primary); font-size:1.3rem; margin-bottom:8px; }
+    /* Lightbox */
+    .lightbox { display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.92); align-items:center; justify-content:center; }
+    .lightbox.open { display:flex; }
+    .lightbox img { max-width:88vw; max-height:85vh; border-radius:var(--radius-lg); object-fit:contain; }
+    .lightbox-close { position:fixed; top:24px; right:28px; color:#fff; font-size:2rem; cursor:pointer; z-index:10000; background:none; border:none; }
+    @media(max-width:900px){.gallery-masonry{columns:2;}}
+    @media(max-width:560px){.gallery-masonry{columns:1;}}
+  </style>
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo"><span class="logo-mark"><i class="fa-solid fa-utensils"></i></span><span class="logo-text">Saffron <span>Table</span></span></a>
+      <nav class="navbar" id="navbar">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="menu.html" class="nav-link">Menu</a></li>
+          <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+          <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary nav-cta mobile-only">Book a Table</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary nav-cta desktop-only">Book a Table</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-subtitle">Behind the Pass</span>
+      <h1 class="page-hero-title">Fire, Flour<br><span class="highlight-text">& Midnight Service.</span></h1>
+      <p class="page-hero-desc">A snapshot of life around the hearth: glowing embers, freshly rolled barbari dough, and late-night cellar pours.</p>
+    </div>
+  </section>
+
+  <section class="gallery section-padding">
+    <div class="container">
+      <div class="gallery-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="food">Food</button>
+        <button class="filter-btn" data-filter="kitchen">Kitchen</button>
+        <button class="filter-btn" data-filter="ambiance">Ambiance</button>
+        <button class="filter-btn" data-filter="drinks">Drinks</button>
+      </div>
+      <div class="gallery-masonry" id="gallery-masonry">
+        <div class="gallery-item" data-cat="food"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="Dry-Aged Bone-In Ribeye"><div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Dry-Aged Bone-In Ribeye</span></div></div>
+        <div class="gallery-item" data-cat="ambiance"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Main Dining Room"><div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>The Hearth at Twilight</span></div></div>
+        <div class="gallery-item" data-cat="kitchen"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80" alt="Chef finishing plate"><div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Finishing with Summer Herbs</span></div></div>
+        <div class="gallery-item" data-cat="kitchen"><img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80" alt="Pastry prep"><div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Pastry Prep at 4 PM</span></div></div>
+        <div class="gallery-item" data-cat="drinks"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80" alt="Natural wines"><div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Low-Intervention Cellar</span></div></div>
+        <div class="gallery-item" data-cat="food"><img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80" alt="Farm delivery greens"><div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Daybreak Farm Delivery</span></div></div>
+        <div class="gallery-item" data-cat="food"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80" alt="Lamb Shank"><div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>8-Hour Lamb Shank</span></div></div>
+        <div class="gallery-item" data-cat="ambiance"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="Dining ambiance"><div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Counter Seats by the Fire</span></div></div>
+        <div class="gallery-item" data-cat="drinks"><img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80" alt="Cocktail"><div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Smoked Saffron Old Fashioned</span></div></div>
+        <div class="gallery-item" data-cat="food"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=800&q=80" alt="Panna Cotta"><div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Pistachio Saffron Panna Cotta</span></div></div>
+        <div class="gallery-item" data-cat="kitchen"><img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=800&q=80" alt="Chef plating"><div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Chef at the Pass</span></div></div>
+        <div class="gallery-item" data-cat="ambiance"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Hearth glow"><div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Hearth Glow at Dusk</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close"><i class="fa-solid fa-xmark"></i></button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-col brand-col"><a href="index.html" class="logo footer-logo"><span class="logo-mark"><i class="fa-solid fa-utensils"></i></span><span class="logo-text">Saffron <span>Table</span></span></a><p class="footer-about">An independent wood-fired hearth kitchen dedicated to wild herbs, heritage grains, and single-origin saffron.</p><div class="social-links"><a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></div></div>
+      <div class="footer-col"><h4 class="footer-heading">Navigate</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="menu.html">Menu</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-heading">Service Schedule</h4><ul class="footer-hours"><li><span>Tue – Thu:</span> <span>5:00pm – 10:30pm</span></li><li><span>Fri – Sat:</span> <span>4:30pm – 11:30pm</span></li><li><span>Sunday:</span> <span>11:30am – 8:30pm</span></li></ul></div>
+      <div class="footer-col"><h4 class="footer-heading">Feasts & Buyouts</h4><p class="footer-text">Our back hearth dining room seats up to 36 guests.</p><a href="mailto:events@saffrontable.com" class="footer-link-highlight"><i class="fa-solid fa-envelope"></i> events@saffrontable.com</a></div>
+    </div>
+    <div class="footer-bottom"><div class="container footer-bottom-container"><p>&copy; 2026 Saffron Table. Honest cooking over open white oak embers.</p><p>Crafted with pride in New York.</p></div></div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Gallery filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        galleryItems.forEach(item => {
+          item.style.display = (f === 'all' || item.dataset.cat === f) ? 'block' : 'none';
+        });
+      });
+    });
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        lightboxImg.src = item.querySelector('img').src;
+        lightbox.classList.add('open');
+      });
+    });
+    document.getElementById('lightbox-close').addEventListener('click', () => lightbox.classList.remove('open'));
+    lightbox.addEventListener('click', e => { if(e.target === lightbox) lightbox.classList.remove('open'); });
+  </script>
+</body>
+</html>

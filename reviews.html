@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reviews | Saffron Table</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+  <style>
+    .rating-summary { display:grid; grid-template-columns:auto 1fr; gap:48px; align-items:center; background:#fff; border-radius:var(--radius-xl); padding:52px; box-shadow:var(--shadow-card); border:1px solid var(--light-border); margin-bottom:64px; }
+    .overall-score { text-align:center; }
+    .overall-score .score { font-family:var(--font-serif); font-size:5rem; font-weight:700; color:var(--primary); line-height:1; }
+    .overall-score .score-label { font-size:0.82rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-top:6px; }
+    .overall-score .stars { color:#f59e0b; font-size:1.4rem; margin:10px 0; }
+    .rating-bars { display:flex; flex-direction:column; gap:14px; }
+    .rating-bar-row { display:flex; align-items:center; gap:16px; }
+    .rating-bar-row span:first-child { width:90px; font-size:0.9rem; font-weight:600; color:var(--text-secondary); }
+    .bar-track { flex:1; height:8px; background:var(--light-warm); border-radius:var(--radius-full); overflow:hidden; }
+    .bar-fill { height:100%; background:var(--gold-gradient); border-radius:var(--radius-full); }
+    .rating-bar-row span:last-child { width:32px; font-size:0.88rem; font-weight:700; color:var(--text-secondary); text-align:right; }
+    .reviews-extended { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+    .press-section { padding:100px 0; background:var(--dark-bg); }
+    .press-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:64px; }
+    .press-card { background:var(--dark-card); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius-lg); padding:36px 32px; transition:var(--transition); }
+    .press-card:hover { border-color:var(--primary-border); transform:translateY(-4px); }
+    .press-source { font-size:0.8rem; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--primary); margin-bottom:16px; display:block; }
+    .press-quote { font-family:var(--font-serif); font-size:1.2rem; color:#fff; line-height:1.6; font-style:italic; margin-bottom:18px; }
+    .press-meta { font-size:0.85rem; color:rgba(255,255,255,0.45); }
+    .write-review { background:var(--light-bg); padding:100px 0; }
+    .review-form { background:#fff; border-radius:var(--radius-xl); padding:52px; box-shadow:var(--shadow-card); border:1px solid var(--light-border); max-width:720px; margin:0 auto; }
+    .star-picker { display:flex; gap:10px; margin-bottom:8px; }
+    .star-picker i { font-size:2rem; color:#e5dfd4; cursor:pointer; transition:var(--transition-fast); }
+    .star-picker i.active, .star-picker i:hover { color:#f59e0b; }
+    @media(max-width:900px){.reviews-extended,.press-grid{grid-template-columns:1fr 1fr;} .rating-summary{grid-template-columns:1fr;gap:28px;}}
+    @media(max-width:600px){.reviews-extended,.press-grid{grid-template-columns:1fr;} .review-form{padding:32px 24px;}}
+  </style>
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo"><span class="logo-mark"><i class="fa-solid fa-utensils"></i></span><span class="logo-text">Saffron <span>Table</span></span></a>
+      <nav class="navbar" id="navbar">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="menu.html" class="nav-link">Menu</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="reviews.html" class="nav-link active">Reviews</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary nav-cta mobile-only">Book a Table</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary nav-cta desktop-only">Book a Table</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-subtitle">Overheard at the Counter</span>
+      <h1 class="page-hero-title">Real Diners,<br><span class="highlight-text">Honest Words.</span></h1>
+      <p class="page-hero-desc">No paid influencer fluff — just regulars and first-timers who sat by the hearth and couldn't stop talking.</p>
+    </div>
+  </section>
+
+  <section class="reviews section-padding">
+    <div class="container">
+      <div class="rating-summary">
+        <div class="overall-score">
+          <div class="score">4.9</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+          <div class="score-label">847 Reviews</div>
+        </div>
+        <div class="rating-bars">
+          <div class="rating-bar-row"><span>Food</span><div class="bar-track"><div class="bar-fill" style="width:98%"></div></div><span>4.9</span></div>
+          <div class="rating-bar-row"><span>Service</span><div class="bar-track"><div class="bar-fill" style="width:96%"></div></div><span>4.8</span></div>
+          <div class="rating-bar-row"><span>Ambiance</span><div class="bar-track"><div class="bar-fill" style="width:94%"></div></div><span>4.7</span></div>
+          <div class="rating-bar-row"><span>Value</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div><span>4.5</span></div>
+          <div class="rating-bar-row"><span>Drinks</span><div class="bar-track"><div class="bar-fill" style="width:96%"></div></div><span>4.8</span></div>
+        </div>
+      </div>
+      <div class="reviews-extended">
+        <div class="review-card featured-review"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="review-text">"The lamb shank comes apart if you just look at it with a fork. That golden broth with the charred bread to mop it up? We sat in silence for ten minutes just eating."</p><div class="reviewer"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Elena Vance" class="reviewer-avatar"><div><h4 class="reviewer-name">Elena Vance</h4><span class="reviewer-role">Food Writer, Table & Vine</span></div></div></div>
+        <div class="review-card"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="review-text">"Ask for counter seats 4 and 5 — you get front-row heat from the hearth and the bartenders actually know how to build an Old Fashioned without drowning it in sugar syrup."</p><div class="reviewer"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Marcus Sterling" class="reviewer-avatar"><div><h4 class="reviewer-name">Marcus Sterling</h4><span class="reviewer-role">Neighborhood Regular</span></div></div></div>
+        <div class="review-card"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="review-text">"Real barberries, real sumac, real saffron — not yellow food dye or watered-down rosewater. Reminded me of Friday family dinners at my aunt's table in Shiraz."</p><div class="reviewer"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80" alt="Sophia Chen" class="reviewer-avatar"><div><h4 class="reviewer-name">Sophia Chen</h4><span class="reviewer-role">Culinary Traveler</span></div></div></div>
+        <div class="review-card"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="review-text">"The saffron seafood rice is absolutely spectacular. The crust at the bottom of the cast iron is worth the entire trip by itself. We've been back four times."</p><div class="reviewer"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80" alt="James Okafor" class="reviewer-avatar"><div><h4 class="reviewer-name">James Okafor</h4><span class="reviewer-role">Food Blogger</span></div></div></div>
+        <div class="review-card"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="review-text">"Best pistachio panna cotta of my life. And I've eaten in Michelin-starred restaurants across 14 countries. Chef Arash is cooking at a completely different level."</p><div class="reviewer"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80" alt="Priya Nair" class="reviewer-avatar"><div><h4 class="reviewer-name">Priya Nair</h4><span class="reviewer-role">Travel Writer</span></div></div></div>
+        <div class="review-card"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="review-text">"Our anniversary dinner. Chef personally came out and wished us. The staff remembered my wife's nut allergy without us saying anything. This place is special."</p><div class="reviewer"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80" alt="David Chen" class="reviewer-avatar"><div><h4 class="reviewer-name">David Chen</h4><span class="reviewer-role">Regular Guest</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Press Quotes -->
+  <section class="press-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle" style="color:var(--primary);">Press & Critics</span>
+        <h2 class="section-title" style="color:#fff;">What They're Writing</h2>
+        <p class="section-description" style="color:rgba(255,255,255,0.55);">When critics put down their pens and pick up their forks, this is what they say.</p>
+      </div>
+      <div class="press-grid">
+        <div class="press-card"><span class="press-source">Michelin Guide</span><p class="press-quote">"A masterclass in hearth cooking. Chef Kermani works live fire with a confidence that takes decades to earn."</p><span class="press-meta">Michelin Guide, 2020</span></div>
+        <div class="press-card"><span class="press-source">Table & Vine</span><p class="press-quote">"The best new restaurant in New York is also the most restrained. No tricks, no theatre — just extraordinary food."</p><span class="press-meta">Table & Vine, Best New Restaurant, 2014</span></div>
+        <div class="press-card"><span class="press-source">The New Yorker</span><p class="press-quote">"Saffron Table is what happens when a chef has nothing to prove and everything to express."</p><span class="press-meta">The New Yorker, Critic's Pick, 2022</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Write a Review -->
+  <section class="write-review">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">Share Your Experience</span>
+        <h2 class="section-title">Leave a Review</h2>
+        <p class="section-description">Been to Saffron Table? We'd love to hear from you.</p>
+      </div>
+      <div class="review-form">
+        <form id="review-form">
+          <div class="form-row">
+            <div class="form-group"><label><i class="fa-solid fa-user"></i> Your Name</label><input type="text" placeholder="Your full name" required></div>
+            <div class="form-group"><label><i class="fa-solid fa-envelope"></i> Email</label><input type="email" placeholder="your@email.com" required></div>
+          </div>
+          <div class="form-group" style="margin-bottom:24px;">
+            <label>Your Rating</label>
+            <div class="star-picker" id="star-picker">
+              <i class="fa-solid fa-star" data-val="1"></i>
+              <i class="fa-solid fa-star" data-val="2"></i>
+              <i class="fa-solid fa-star" data-val="3"></i>
+              <i class="fa-solid fa-star" data-val="4"></i>
+              <i class="fa-solid fa-star" data-val="5"></i>
+            </div>
+          </div>
+          <div class="form-group"><label><i class="fa-solid fa-comment-dots"></i> Your Review</label><textarea rows="5" placeholder="Tell us about your experience at Saffron Table..." required></textarea></div>
+          <button type="submit" class="btn btn-primary btn-block">Submit Review <i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-col brand-col"><a href="index.html" class="logo footer-logo"><span class="logo-mark"><i class="fa-solid fa-utensils"></i></span><span class="logo-text">Saffron <span>Table</span></span></a><p class="footer-about">An independent wood-fired hearth kitchen dedicated to wild herbs, heritage grains, and single-origin saffron.</p><div class="social-links"><a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></div></div>
+      <div class="footer-col"><h4 class="footer-heading">Navigate</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="menu.html">Menu</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-heading">Service Schedule</h4><ul class="footer-hours"><li><span>Tue – Thu:</span> <span>5:00pm – 10:30pm</span></li><li><span>Fri – Sat:</span> <span>4:30pm – 11:30pm</span></li><li><span>Sunday:</span> <span>11:30am – 8:30pm</span></li></ul></div>
+      <div class="footer-col"><h4 class="footer-heading">Feasts & Buyouts</h4><p class="footer-text">Our back hearth dining room seats up to 36 guests.</p><a href="mailto:events@saffrontable.com" class="footer-link-highlight"><i class="fa-solid fa-envelope"></i> events@saffrontable.com</a></div>
+    </div>
+    <div class="footer-bottom"><div class="container footer-bottom-container"><p>&copy; 2026 Saffron Table. Honest cooking over open white oak embers.</p><p>Crafted with pride in New York.</p></div></div>
+  </footer>
+  <script src="script.js"></script>
+  <script>
+    // Star picker
+    const stars = document.querySelectorAll('#star-picker i');
+    let rating = 0;
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        rating = parseInt(star.dataset.val);
+        stars.forEach((s,i) => s.classList.toggle('active', i < rating));
+      });
+      star.addEventListener('mouseover', () => stars.forEach((s,i) => s.style.color = i < parseInt(star.dataset.val) ? '#f59e0b' : '#e5dfd4'));
+      star.addEventListener('mouseout', () => stars.forEach((s,i) => s.style.color = i < rating ? '#f59e0b' : '#e5dfd4'));
+    });
+    document.getElementById('review-form').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Thank you for your review! We appreciate your feedback.');
+      e.target.reset();
+      rating = 0;
+      stars.forEach(s => { s.classList.remove('active'); s.style.color = '#e5dfd4'; });
+    });
+  </script>
+</body>
+</html>

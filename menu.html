@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu | Saffron Table</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo"><span class="logo-mark"><i class="fa-solid fa-utensils"></i></span><span class="logo-text">Saffron <span>Table</span></span></a>
+      <nav class="navbar" id="navbar">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="menu.html" class="nav-link active">Menu</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary nav-cta mobile-only">Book a Table</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary nav-cta desktop-only">Book a Table</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-subtitle">Tonight's Service</span>
+      <h1 class="page-hero-title">Plates for Passing<br><span class="highlight-text">& Mop-Up Bread.</span></h1>
+      <p class="page-hero-desc">Everything cooked over glowing charcoal, dressed with cold-pressed olive oils, and meant to be shared across the table.</p>
+    </div>
+  </section>
+
+  <section class="menu section-padding">
+    <div class="container">
+      <div class="menu-tabs">
+        <button class="tab-btn active" data-category="all">All Dishes</button>
+        <button class="tab-btn" data-category="starters">Small Plates</button>
+        <button class="tab-btn" data-category="mains">From the Hearth</button>
+        <button class="tab-btn" data-category="desserts">Sweet Finishes</button>
+        <button class="tab-btn" data-category="beverages">Spirits & Cellar</button>
+      </div>
+      <div class="menu-grid" id="menu-grid">
+        <article class="menu-card" data-category="starters">
+          <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=700&q=80" alt="Wild Foraged Mushroom Tart"><span class="dish-tag">Wood-Fired</span></div>
+          <div class="menu-card-body"><div class="menu-card-header"><h3 class="dish-title">Wild Foraged Mushroom Tart</h3><span class="dish-price">&#8377;650</span></div><p class="dish-desc">Charred maitake and chanterelles over whipped sheep's feta, crispy rye pastry, and winter truffle oil.</p></div>
+        </article>
+        <article class="menu-card" data-category="starters">
+          <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=700&q=80" alt="Crispy Saffron Calamari"><span class="dish-tag popular">Regulars' Favorite</span></div>
+          <div class="menu-card-body"><div class="menu-card-header"><h3 class="dish-title">Crispy Saffron Calamari</h3><span class="dish-price">&#8377;750</span></div><p class="dish-desc">Point Judith squid flash-fried with crushed coriander seed, grilled lemon wedge, and house saffron aioli.</p></div>
+        </article>
+        <article class="menu-card" data-category="starters">
+          <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?auto=format&fit=crop&w=700&q=80" alt="Charred Aubergine"><span class="dish-tag">Vegan</span></div>
+          <div class="menu-card-body"><div class="menu-card-header"><h3 class="dish-title">Charred Aubergine & Tahini</h3><span class="dish-price">&#8377;580</span></div><p class="dish-desc">Whole aubergine blistered over live flame, whipped sesame tahini, wild herb oil, and pomegranate seeds.</p></div>
+        </article>
+        <article class="menu-card" data-category="mains">
+          <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=700&q=80" alt="Royal 8-Hour Braised Lamb Shank"><span class="dish-tag chef">House Crown</span></div>
+          <div class="menu-card-body"><div class="menu-card-header"><h3 class="dish-title">Royal 8-Hour Lamb Shank</h3><span class="dish-price">&#8377;1,650</span></div><p class="dish-desc">Simmered till falling off the bone with golden saffron broth, dried Persian lime, sweet barberries, and creamy polenta.</p></div>
+        </article>
+        <article class="menu-card" data-category="mains">
+          <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=700&q=80" alt="Hearth-Charred King Salmon"><span class="dish-tag">Catch of the Day</span></div>
+          <div class="menu-card-body"><div class="menu-card-header"><h3 class="dish-title">Hearth-Charred King Salmon</h3><span class="dish-price">&#8377;1,450</span></div><p class="dish-desc">Crisp-skin Atlantic fillet basted with saffron-dill butter, wood-roasted baby leeks, and crushed marble potatoes.</p></div>
+        </article>
+        <article class="menu-card" data-category="mains">
+          <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=700&q=80" alt="Khorasan Saffron Seafood Rice"><span class="dish-tag popular">Cast Iron</span></div>
+          <div class="menu-card-body"><div class="menu-card-header"><h3 class="dish-title">Khorasan Saffron Seafood Rice</h3><span class="dish-price">&#8377;1,350</span></div><p class="dish-desc">Carnaroli grains crisped on cast iron, wild Maine sea scallops, tiger prawns, sweet peas, and red saffron threads.</p></div>
+        </article>
+        <article class="menu-card" data-category="mains">
+          <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=700&q=80" alt="Embers-Charred Paneer Tikka"><span class="dish-tag">Vegetarian</span></div>
+          <div class="menu-card-body"><div class="menu-card-header"><h3 class="dish-title">Embers-Charred Paneer Tikka</h3><span class="dish-price">&#8377;850</span></div><p class="dish-desc">Thick fresh curd paneer smoked over oak charcoal, heirloom tomato-fenugreek reduction, and hot garlic barbari bread.</p></div>
+        </article>
+        <article class="menu-card" data-category="desserts">
+          <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=700&q=80" alt="Pistachio Saffron Panna Cotta"><span class="dish-tag chef">Signature</span></div>
+          <div class="menu-card-body"><div class="menu-card-header"><h3 class="dish-title">Pistachio & Saffron Panna Cotta</h3><span class="dish-price">&#8377;450</span></div><p class="dish-desc">Jersey cream infused with green cardamom pods, crushed Sicilian pistachios, amber saffron syrup, and gold leaf.</p></div>
+        </article>
+        <article class="menu-card" data-category="desserts">
+          <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=80" alt="72% Valrhona Dark Molten"><span class="dish-tag">House Classic</span></div>
+          <div class="menu-card-body"><div class="menu-card-header"><h3 class="dish-title">72% Valrhona Dark Molten</h3><span class="dish-price">&#8377;520</span></div><p class="dish-desc">Single-plantation warm chocolate cake with a molten center, tart sour cherry compote, and smoked vanilla gelato.</p></div>
+        </article>
+        <article class="menu-card" data-category="beverages">
+          <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=700&q=80" alt="Smoked Saffron Old Fashioned"><span class="dish-tag popular">House Cocktail</span></div>
+          <div class="menu-card-body"><div class="menu-card-header"><h3 class="dish-title">Smoked Saffron Old Fashioned</h3><span class="dish-price">&#8377;850</span></div><p class="dish-desc">Bonded rye, saffron-steeped raw demerara, charred cedarwood bitters, and expressed blood orange oil.</p></div>
+        </article>
+        <article class="menu-card" data-category="beverages">
+          <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=700&q=80" alt="Blood Orange Rosemary Fizz"><span class="dish-tag">Zero Proof</span></div>
+          <div class="menu-card-body"><div class="menu-card-header"><h3 class="dish-title">Blood Orange & Rosemary Fizz</h3><span class="dish-price">&#8377;350</span></div><p class="dish-desc">Fresh blood orange juice, clarified pink grapefruit, slapped garden rosemary sprig, and bubbling soda.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-col brand-col">
+        <a href="index.html" class="logo footer-logo"><span class="logo-mark"><i class="fa-solid fa-utensils"></i></span><span class="logo-text">Saffron <span>Table</span></span></a>
+        <p class="footer-about">An independent wood-fired hearth kitchen dedicated to wild herbs, heritage grains, and single-origin saffron.</p>
+        <div class="social-links"><a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></div>
+      </div>
+      <div class="footer-col"><h4 class="footer-heading">Navigate</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="menu.html">Menu</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-heading">Service Schedule</h4><ul class="footer-hours"><li><span>Tue – Thu:</span> <span>5:00pm – 10:30pm</span></li><li><span>Fri – Sat:</span> <span>4:30pm – 11:30pm</span></li><li><span>Sunday:</span> <span>11:30am – 8:30pm</span></li></ul></div>
+      <div class="footer-col"><h4 class="footer-heading">Feasts & Buyouts</h4><p class="footer-text">Our back hearth dining room seats up to 36 guests with customised family-style spreads.</p><a href="mailto:events@saffrontable.com" class="footer-link-highlight"><i class="fa-solid fa-envelope"></i> events@saffrontable.com</a></div>
+    </div>
+    <div class="footer-bottom"><div class="container footer-bottom-container"><p>&copy; 2026 Saffron Table. Honest cooking over open white oak embers.</p><p>Crafted with pride in New York.</p></div></div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
