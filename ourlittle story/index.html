@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Little Puppy Wants to Say Sorry 🐶❤️</title>
+  <meta name="description" content="A cute, romantic apology from a tiny fluffy puppy to someone very special.">
+  
+  <!-- Romantic & Cute Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-default">
+
+  <!-- Interactive Floating Background Canvas -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- Confetti Canvas for Celebration -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- Sound / Music Control Widget -->
+  <header class="top-bar">
+    <button id="music-toggle" class="music-btn" aria-label="Toggle Romantic Music" title="Play romantic melody">
+      <span class="music-icon" id="music-icon">🎵</span>
+      <span class="music-text" id="music-text">Music</span>
+      <span class="music-visualizer" id="music-visualizer" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </header>
+
+  <!-- Main Experience Wrapper -->
+  <main class="main-container">
+
+    <!-- ==================== SECTION 1: WELCOME SCREEN ==================== -->
+    <section id="screen-welcome" class="screen active" aria-label="Welcome Screen">
+      <div class="card card-welcome">
+        <div class="puppy-frame-wrapper">
+          <div class="sparkle-orbit" aria-hidden="true">
+            <span class="orbit-sparkle s1">✨</span>
+            <span class="orbit-sparkle s2">🌸</span>
+            <span class="orbit-sparkle s3">💖</span>
+          </div>
+          <div class="puppy-avatar-frame">
+            <img src="assets/images/puppy_welcome.jpg" 
+                 alt="A tiny, fluffy golden retriever puppy sitting sweetly with a glowing pink heart" 
+                 class="puppy-img puppy-welcome-img" 
+                 loading="eager" />
+          </div>
+        </div>
+
+        <div class="content-block">
+          <span class="sweet-tagline">A special message for you</span>
+          <h1 class="main-title">Heyyyy Princessss 🥺❤️</h1>
+          <p class="subtitle">Someone has a little something to tell you...</p>
+          
+          <button id="btn-to-apology" class="cute-btn btn-primary" type="button">
+            <span>Who's that? 🐶</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 2: THE APOLOGY ==================== -->
+    <section id="screen-apology" class="screen" aria-label="The Apology Screen">
+      <div class="card card-apology">
+        <div class="puppy-frame-wrapper">
+          <div class="puppy-avatar-frame">
+            <img src="assets/images/puppy_apology.jpg" 
+                 alt="A fluffy puppy with innocent, slightly sad eyes looking up pleadingly" 
+                 class="puppy-img puppy-apology-img" 
+                 loading="lazy" />
+          </div>
+          <!-- Animated beating heart beside the puppy -->
+          <div class="beating-heart-badge" title="My heart belongs to you" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="svg-heart">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h2 class="main-title bounce-title">IT'S MEEEE!! 🥺</h2>
+          
+          <div class="apology-letter" id="apology-text">
+            <p class="letter-para p1">I know I made a mistake, and I'm really sorry for hurting you.</p>
+            <p class="letter-para p2">I never wanted to make you sad.</p>
+            <p class="letter-para p3">You mean so much to me, and I genuinely want to make things right.</p>
+            <p class="letter-para p4">I know saying sorry isn't enough, but I promise I'll try to understand you better and be more careful with your feelings.</p>
+            <p class="letter-para p5 highlight-text">Please don't stay sad, my favourite person. ❤️</p>
+          </div>
+
+          <button id="btn-to-question" class="cute-btn btn-primary" type="button">
+            <span>Will you forgive this idiot? 🥹</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 3: THE BIG QUESTION ==================== -->
+    <section id="screen-question" class="screen" aria-label="The Big Question Screen">
+      <div class="card card-question">
+        
+        <!-- Interactive Puppy Display (Changes based on choice) -->
+        <div class="puppy-frame-wrapper">
+          <div class="puppy-avatar-frame question-frame">
+            <!-- Question state puppy (holding pink heart) -->
+            <img id="img-puppy-question" 
+                 src="assets/images/puppy_question.jpg" 
+                 alt="Fluffy puppy holding a soft pink heart" 
+                 class="puppy-img puppy-state-img active" />
+            
+            <!-- Happy state puppy (jumping for joy) -->
+            <img id="img-puppy-happy" 
+                 src="assets/images/puppy_happy.jpg" 
+                 alt="Ecstatic fluffy puppy jumping with pure happiness" 
+                 class="puppy-img puppy-state-img" />
+
+            <!-- Sad wait state puppy (resting chin on paws) -->
+            <img id="img-puppy-sad" 
+                 src="assets/images/puppy_sad_wait.jpg" 
+                 alt="Fluffy puppy resting chin on paws patiently waiting" 
+                 class="puppy-img puppy-state-img" />
+          </div>
+        </div>
+
+        <!-- State A: The Initial Question -->
+        <div id="box-question" class="question-state-box active">
+          <h2 class="main-title">One little question...</h2>
+          <p class="subtitle">Can this little puppy get a little forgiveness? 🥺</p>
+
+          <div class="button-choice-group">
+            <button id="btn-yes" class="cute-btn btn-yes" type="button">
+              <span>YESSS, I forgive you ❤️</span>
+            </button>
+            <button id="btn-angry" class="cute-btn btn-angry" type="button">
+              <span>I'M STILL ANGRY 😤</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- State B: Forgiven (YES Clicked) -->
+        <div id="box-happy" class="question-state-box">
+          <div class="celebration-badge">🎉 🐶 💖</div>
+          <h2 class="main-title celebration-text">YAYYYYY!! YOU MADE THIS PUPPY SO HAPPY!! 🐶❤️</h2>
+          <p class="subtitle">He loves you to the moon and back a million times! ✨</p>
+          
+          <button id="btn-to-surprise" class="cute-btn btn-surprise" type="button">
+            <span>Send him a little surprise 💌</span>
+          </button>
+        </div>
+
+        <!-- State C: Still Angry (Patiently Waiting) -->
+        <div id="box-angry" class="question-state-box">
+          <h2 class="main-title sad-title">Okayyy, I'll wait. 🥺</h2>
+          <div class="sad-message-box">
+            <p>Take your time. I still owe you a proper apology. 🥺</p>
+            <p class="sub-sad-note">No rush at all. You deserve all the patience and love in the world. ❤️</p>
+          </div>
+
+          <button id="btn-ask-again" class="cute-btn btn-secondary" type="button">
+            <span>Can I ask again later? 🐶</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 4: THE FINAL SURPRISE ==================== -->
+    <section id="screen-surprise" class="screen" aria-label="Final Surprise Screen">
+      <div class="card card-surprise">
+        <div class="puppy-frame-wrapper">
+          <div class="puppy-avatar-frame pulse-frame">
+            <img src="assets/images/puppy_love.jpg" 
+                 alt="Realistic fluffy puppy hugging a large pink heart cushion" 
+                 class="puppy-img puppy-love-img" 
+                 loading="lazy" />
+          </div>
+          <div class="floating-kiss-cluster" aria-hidden="true">
+            <span class="kiss k1">💖</span>
+            <span class="kiss k2">🌸</span>
+            <span class="kiss k3">✨</span>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <span class="sweet-tagline">Forever & Always</span>
+          <h1 class="main-title love-heading">I LOVE YOUUUUU ❤️</h1>
+          <p class="subtitle">From your favourite idiot, with lots and lots of love. 🐶</p>
+
+          <!-- WhatsApp Final Action Button -->
+          <div class="whatsapp-wrapper">
+            <a id="btn-whatsapp" 
+               href="https://wa.me/918328237073?text=I%20LOVE%20YOUUUUU%20%E2%9D%A4%EF%B8%8F%F0%9F%A5%BA" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="cute-btn btn-whatsapp">
+              <span class="btn-wa-icon" aria-hidden="true">💌</span>
+              <span>Send him this little message 💌</span>
+            </a>
+            <p class="whatsapp-helper-note">
+              (Opens WhatsApp with your message ready — just tap Send! 💌)
+            </p>
+          </div>
+
+          <button id="btn-restart" class="restart-link" type="button">
+            <span>🐾 Look at the puppy again</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bottom-footer">
+    <p>Made with all my heart for Princess ❤️</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,898 @@
+/* ==========================================================================
+   A LITTLE PUPPY WANTS TO SAY SORRY 🐶❤️
+   Dreamy Pastel-Pink Romantic Stylesheet
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CSS VARIABLES & DESIGN SYSTEM
+   -------------------------------------------------------------------------- */
+:root {
+  /* Pastel Pink Color Palette */
+  --bg-gradient-1: #FFF0F5;       /* Lavender blush / creamy soft pink */
+  --bg-gradient-2: #FFE4EC;       /* Baby pink */
+  --bg-gradient-3: #F3E8FF;       /* Soft lavender */
+  --bg-gradient-4: #FFEFE6;       /* Light peach */
+
+  /* Joyful / Happy Gradient (Bright Pink after YES) */
+  --bg-happy-1: #FFF5F7;
+  --bg-happy-2: #FFD6E0;
+  --bg-happy-3: #FFE3EC;
+  --bg-happy-4: #FFF0F3;
+
+  /* Card & Glassmorphism */
+  --card-bg: rgba(255, 255, 255, 0.88);
+  --card-border: rgba(255, 214, 224, 0.8);
+  --card-shadow: 0 24px 60px rgba(255, 143, 171, 0.2), 
+                 0 10px 25px rgba(216, 191, 216, 0.25);
+  
+  /* Text Colors */
+  --text-primary: #4A2835;        /* Deep warm berry for high contrast & clarity */
+  --text-secondary: #75485B;      /* Muted rosy plum */
+  --text-muted: #9F7285;          /* Soft gentle caption */
+  --accent-pink: #FF4D6D;         /* Vibrant heart pink */
+  --accent-rose: #C9184A;         /* Romantic deep rose */
+  --accent-gold: #FFB703;         /* Sparkle gold */
+
+  /* Button Gradients */
+  --btn-primary-grad: linear-gradient(135deg, #FF6B8B 0%, #FF8E9E 100%);
+  --btn-primary-shadow: 0 10px 26px rgba(255, 107, 139, 0.38);
+  
+  --btn-yes-grad: linear-gradient(135deg, #FF4D6D 0%, #FF758F 100%);
+  --btn-yes-shadow: 0 12px 30px rgba(255, 77, 109, 0.42);
+
+  --btn-whatsapp-grad: linear-gradient(135deg, #E63946 0%, #FF4D6D 50%, #FF758F 100%);
+  --btn-whatsapp-shadow: 0 14px 34px rgba(230, 57, 70, 0.45);
+
+  /* Fonts */
+  --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-romantic: 'Caveat', cursive, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+
+  /* Dimensions & Spacing */
+  --border-radius-card: 32px;
+  --border-radius-btn: 999px;
+  --max-card-width: 580px;
+
+  /* Transition speeds */
+  --transition-smooth: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-fast: all 0.25s ease-out;
+}
+
+/* --------------------------------------------------------------------------
+   BASE & RESET
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 35%, var(--bg-gradient-3) 70%, var(--bg-gradient-4) 100%);
+  background-size: 300% 300%;
+  animation: gradientShift 18s ease infinite;
+  transition: background 1.2s ease;
+}
+
+body.theme-celebration {
+  background: linear-gradient(135deg, var(--bg-happy-1) 0%, var(--bg-happy-2) 30%, var(--bg-happy-3) 70%, var(--bg-happy-4) 100%);
+  background-size: 300% 300%;
+  animation: gradientShift 12s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --------------------------------------------------------------------------
+   FLOATING CANVAS BACKGROUNDS
+   -------------------------------------------------------------------------- */
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* --------------------------------------------------------------------------
+   TOP BAR & MUSIC CONTROLLER
+   -------------------------------------------------------------------------- */
+.top-bar {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  z-index: 50;
+}
+
+.music-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 182, 193, 0.6);
+  border-radius: var(--border-radius-btn);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(255, 143, 171, 0.2);
+  transition: var(--transition-fast);
+  user-select: none;
+}
+
+.music-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 107, 139, 0.3);
+  border-color: var(--accent-pink);
+  color: var(--accent-rose);
+}
+
+.music-btn:active {
+  transform: translateY(1px);
+}
+
+.music-btn.playing {
+  border-color: var(--accent-pink);
+  color: var(--accent-rose);
+  background: rgba(255, 240, 245, 0.95);
+}
+
+.music-icon {
+  font-size: 1.15rem;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.music-btn.playing .music-icon {
+  animation: notePulse 1.2s ease-in-out infinite;
+}
+
+@keyframes notePulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.2) rotate(-8deg); }
+}
+
+/* Music Visualizer Bars */
+.music-visualizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 14px;
+}
+
+.music-visualizer span {
+  display: block;
+  width: 3px;
+  height: 4px;
+  background: var(--accent-pink);
+  border-radius: 2px;
+  transition: height 0.2s ease;
+}
+
+.music-btn.playing .music-visualizer span:nth-child(1) {
+  animation: soundBar 0.8s ease-in-out infinite alternate;
+}
+.music-btn.playing .music-visualizer span:nth-child(2) {
+  animation: soundBar 0.6s ease-in-out infinite 0.2s alternate;
+}
+.music-btn.playing .music-visualizer span:nth-child(3) {
+  animation: soundBar 0.9s ease-in-out infinite 0.4s alternate;
+}
+
+@keyframes soundBar {
+  0% { height: 3px; }
+  100% { height: 14px; }
+}
+
+/* --------------------------------------------------------------------------
+   MAIN CONTAINER & SCREEN LAYOUTS
+   -------------------------------------------------------------------------- */
+.main-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: var(--max-card-width);
+  margin: 0 auto;
+  padding: 80px 20px 40px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen {
+  display: none;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(20px) scale(0.97);
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.screen.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation: screenEnter 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes screenEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ROMANTIC CARDS
+   -------------------------------------------------------------------------- */
+.card {
+  position: relative;
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid var(--card-border);
+  border-radius: var(--border-radius-card);
+  box-shadow: var(--card-shadow);
+  padding: 38px 28px;
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+  box-shadow: 0 28px 70px rgba(255, 143, 171, 0.28), 
+              0 12px 30px rgba(216, 191, 216, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   PUPPY AVATAR & FRAMING
+   -------------------------------------------------------------------------- */
+.puppy-frame-wrapper {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  margin: 0 auto 24px;
+}
+
+.puppy-avatar-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 8px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 209, 220, 0.7));
+  box-shadow: 0 12px 32px rgba(255, 143, 171, 0.35),
+              inset 0 0 15px rgba(255, 255, 255, 0.8);
+  animation: puppyBreathing 4s ease-in-out infinite;
+}
+
+.puppy-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+@keyframes puppyBreathing {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.02);
+  }
+}
+
+/* Orbiting Sparkles around Welcome Puppy */
+.sparkle-orbit {
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+  pointer-events: none;
+  animation: slowOrbit 16s linear infinite;
+}
+
+.orbit-sparkle {
+  position: absolute;
+  font-size: 1.3rem;
+  filter: drop-shadow(0 2px 6px rgba(255, 107, 139, 0.4));
+}
+
+.orbit-sparkle.s1 { top: 0; left: 50%; transform: translateX(-50%); }
+.orbit-sparkle.s2 { bottom: 10px; right: 10px; }
+.orbit-sparkle.s3 { bottom: 20px; left: 10px; }
+
+@keyframes slowOrbit {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Beating Heart Badge beside Apology Puppy */
+.beating-heart-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2px solid #FFD1DC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(255, 77, 109, 0.35);
+  animation: heartPulse 1.4s ease-in-out infinite;
+  z-index: 5;
+}
+
+.svg-heart {
+  width: 26px;
+  height: 26px;
+  fill: var(--accent-pink);
+}
+
+@keyframes heartPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.22);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.15);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+/* Multi-State Puppy Images in Section 3 */
+.question-frame {
+  position: relative;
+  overflow: hidden;
+}
+
+.puppy-state-img {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+}
+
+.puppy-state-img.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* Jumping Puppy animation for YES state */
+.puppy-jump {
+  animation: puppyJumpAnimation 0.8s ease-in-out infinite alternate !important;
+}
+
+@keyframes puppyJumpAnimation {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.06) rotate(2deg);
+  }
+  100% {
+    transform: translateY(0) scale(0.98) rotate(-2deg);
+  }
+}
+
+/* Pulse Frame for Final Screen */
+.pulse-frame {
+  animation: gentleGlowPulse 3s ease-in-out infinite, puppyBreathing 5s ease-in-out infinite;
+}
+
+@keyframes gentleGlowPulse {
+  0%, 100% {
+    box-shadow: 0 12px 32px rgba(255, 143, 171, 0.35),
+                0 0 20px rgba(255, 182, 193, 0.4);
+  }
+  50% {
+    box-shadow: 0 16px 42px rgba(255, 77, 109, 0.5),
+                0 0 35px rgba(255, 107, 139, 0.6);
+  }
+}
+
+.floating-kiss-cluster {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.kiss {
+  position: absolute;
+  font-size: 1.4rem;
+  animation: kissDrift 3s ease-in-out infinite;
+}
+
+.kiss.k1 { top: -10px; right: 15px; animation-delay: 0s; }
+.kiss.k2 { bottom: 15px; left: -10px; animation-delay: 1s; }
+.kiss.k3 { top: 40%; left: -15px; animation-delay: 2s; }
+
+@keyframes kissDrift {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+  50% { transform: translateY(-12px) scale(1.18); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHY & CONTENT
+   -------------------------------------------------------------------------- */
+.sweet-tagline {
+  display: inline-block;
+  font-family: var(--font-romantic);
+  font-size: 1.4rem;
+  color: var(--accent-rose);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.main-title {
+  font-family: var(--font-body);
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.bounce-title {
+  animation: gentleBounce 2s ease infinite;
+}
+
+@keyframes gentleBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.love-heading {
+  font-size: 2.3rem;
+  background: linear-gradient(135deg, var(--accent-rose), var(--accent-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 26px;
+}
+
+/* Apology Letter Styling */
+.apology-letter {
+  background: rgba(255, 245, 248, 0.7);
+  border: 1px dashed rgba(255, 182, 193, 0.8);
+  border-radius: 20px;
+  padding: 22px 20px;
+  margin-bottom: 26px;
+  text-align: left;
+}
+
+.letter-para {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: textFadeIn 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.letter-para.p1 { animation-delay: 0.15s; }
+.letter-para.p2 { animation-delay: 0.35s; }
+.letter-para.p3 { animation-delay: 0.55s; }
+.letter-para.p4 { animation-delay: 0.75s; }
+.letter-para.p5 { animation-delay: 0.95s; margin-bottom: 0; }
+
+@keyframes textFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.highlight-text {
+  font-weight: 800;
+  color: var(--accent-rose);
+  font-size: 1.12rem;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 182, 193, 0.4);
+}
+
+/* Question State Boxes */
+.question-state-box {
+  display: none;
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.question-state-box.active {
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.celebration-badge {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+  animation: badgePop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes badgePop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.celebration-text {
+  color: var(--accent-rose);
+  font-size: 1.85rem;
+}
+
+.sad-title {
+  color: var(--text-secondary);
+}
+
+.sad-message-box {
+  background: rgba(248, 243, 248, 0.8);
+  border: 1px solid rgba(216, 191, 216, 0.6);
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 22px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.sub-sad-note {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   INTERACTIVE BUTTONS
+   -------------------------------------------------------------------------- */
+.cute-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 32px;
+  border: none;
+  border-radius: var(--border-radius-btn);
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition-fast);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.cute-btn:focus-visible {
+  box-shadow: 0 0 0 4px rgba(255, 77, 109, 0.35);
+}
+
+/* Primary Button */
+.btn-primary {
+  background: var(--btn-primary-grad);
+  color: #FFFFFF;
+  box-shadow: var(--btn-primary-shadow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 14px 32px rgba(255, 107, 139, 0.48);
+}
+
+.btn-primary:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Button Group for Question Screen */
+.button-choice-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.btn-yes {
+  background: var(--btn-yes-grad);
+  color: #FFFFFF;
+  box-shadow: var(--btn-yes-shadow);
+  font-size: 1.15rem;
+  padding: 16px 28px;
+}
+
+.btn-yes:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 16px 36px rgba(255, 77, 109, 0.52);
+}
+
+.btn-yes:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* STILL ANGRY Button: Respectful, stays firmly in place, never disappears */
+.btn-angry {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #E8B4B8;
+  color: #7A4056;
+  box-shadow: 0 6px 18px rgba(181, 131, 141, 0.15);
+  font-size: 1.05rem;
+  padding: 14px 28px;
+}
+
+.btn-angry:hover {
+  background: #FFF0F3;
+  border-color: #DDA7AA;
+  color: #632E42;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(181, 131, 141, 0.22);
+}
+
+.btn-angry:active {
+  transform: translateY(1px);
+}
+
+/* Secondary Button ("Can I ask again later?") */
+.btn-secondary {
+  background: #FFFFFF;
+  border: 2px solid var(--accent-pink);
+  color: var(--accent-rose);
+  box-shadow: 0 8px 20px rgba(255, 77, 109, 0.2);
+  font-size: 1.05rem;
+  padding: 14px 28px;
+}
+
+.btn-secondary:hover {
+  background: #FFF5F7;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(255, 77, 109, 0.3);
+}
+
+.btn-secondary:active {
+  transform: translateY(1px);
+}
+
+/* Surprise Button (after YES) */
+.btn-surprise {
+  background: var(--btn-primary-grad);
+  color: #FFFFFF;
+  box-shadow: var(--btn-primary-shadow);
+  font-size: 1.15rem;
+  padding: 16px 32px;
+  animation: pulseButton 2s infinite;
+}
+
+@keyframes pulseButton {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+/* --------------------------------------------------------------------------
+   WHATSAPP INTEGRATION BUTTON
+   -------------------------------------------------------------------------- */
+.whatsapp-wrapper {
+  margin: 10px 0 24px;
+}
+
+.btn-whatsapp {
+  width: 100%;
+  max-width: 380px;
+  background: var(--btn-whatsapp-grad);
+  color: #FFFFFF;
+  box-shadow: var(--btn-whatsapp-shadow);
+  font-size: 1.15rem;
+  padding: 16px 28px;
+  margin: 0 auto;
+}
+
+.btn-whatsapp:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 18px 40px rgba(230, 57, 70, 0.55);
+}
+
+.btn-whatsapp:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-wa-icon {
+  font-size: 1.3rem;
+}
+
+.whatsapp-helper-note {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+.restart-link {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: color 0.2s ease;
+}
+
+.restart-link:hover {
+  color: var(--accent-rose);
+}
+
+/* --------------------------------------------------------------------------
+   BOTTOM FOOTER
+   -------------------------------------------------------------------------- */
+.bottom-footer {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 16px 20px 24px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVENESS (MOBILE / TABLET)
+   -------------------------------------------------------------------------- */
+@media (min-width: 480px) {
+  .button-choice-group {
+    flex-direction: row;
+  }
+  .btn-yes, .btn-angry {
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-container {
+    padding: 70px 14px 28px;
+  }
+
+  .card {
+    padding: 28px 18px;
+    border-radius: 26px;
+  }
+
+  .puppy-frame-wrapper {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+  }
+
+  .main-title {
+    font-size: 1.75rem;
+  }
+
+  .love-heading {
+    font-size: 1.95rem;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+  }
+
+  .cute-btn {
+    font-size: 1.02rem;
+    padding: 14px 22px;
+  }
+
+  .apology-letter {
+    padding: 18px 14px;
+  }
+
+  .letter-para {
+    font-size: 0.98rem;
+  }
+
+  .top-bar {
+    top: 14px;
+    right: 14px;
+  }
+
+  .music-btn {
+    padding: 8px 14px;
+    font-size: 0.88rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ACCESSIBILITY: PREFERS REDUCED MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  body {
+    animation: none !important;
+  }
+
+  .puppy-avatar-frame,
+  .beating-heart-badge,
+  .pulse-frame,
+  .sparkle-orbit,
+  .kiss {
+    animation: none !important;
+  }
+}
